@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 30
+  timeout: 5000
+  username: postgres
+  password: ''
+
+development: &development
+  <<: *default
+  username: <%= ENV['POSTGRESQL_USERNAME'] %>
+  password: <%= ENV['POSTGRESQL_PASSWORD'] %>
+  database: potential_octo_train_development
+  host: <%= ENV['POSTGRESQL_HOST'] %>
+  port: <%= ENV['POSTGRESQL_PORT'] || 5432 %>
