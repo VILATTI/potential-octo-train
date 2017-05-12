@@ -13,3 +13,8 @@ development: &development
   database: potential_octo_train_development
   host: <%= ENV['POSTGRESQL_HOST'] %>
   port: <%= ENV['POSTGRESQL_PORT'] || 5432 %>
+
+test: &test
+  <<: *default
+  username: <%= ENV['POSTGRESQL_USERNAME'] %>
+  database: potential_octo_train_test
