@@ -1,0 +1,42 @@
+AllCops:
+  Include:
+    - "**/*.gemspec"
+    - "**/*.podspec"
+    - "**/*.jbuilder"
+    - "**/*.rake"
+    - "**/*.opal"
+    - "**/Gemfile"
+    - "**/Rakefile"
+    - "**/Capfile"
+    - "**/Guardfile"
+    - "**/Podfile"
+    - "**/Thorfile"
+    - "**/Vagrantfile"
+    - "**/Berksfile"
+    - "**/Cheffile"
+    - "**/Vagabondfile"
+  Exclude:
+    - "config/initializers/ransack.rb"
+    - "vendor/**/*"
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'spec/spec_helper.rb'
+    - 'db/**/*'
+    - 'config/initializers/devise.rb'
+    - 'lib/tasks/cucumber.rake'
+  CacheRootDirectory: tmp/cache/rubocop_cache/
+  TargetRubyVersion: 2.3
+Rails:
+  Enabled: true
+Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+  IndentationWidth: 2
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

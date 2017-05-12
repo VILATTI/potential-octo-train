@@ -1,0 +1,15 @@
+machine:
+  ruby:
+    version:
+      2.3.0
+  post:
+    - ./daemon:
+          background: true
+test:
+  override:
+    - bundle exec rubocop:
+        parallel: true
+    - bundle exec rspec:
+        parallel: true
+    - bundle exec cucumber:
+        parallel: true

@@ -1,7 +1,10 @@
+require 'factory_girl'
 require 'cucumber/rails'
 require 'webmock/cucumber' if Rails.env.test?
 require 'capybara/poltergeist'
 require 'cucumber/rspec/doubles'
+
+include Warden::Test::Helpers
 
 Before do
   WebMock.disable_net_connect!(allow_localhost: true) if Rails.env.test?
@@ -33,3 +36,4 @@ rescue NameError
 end
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
+World(FactoryGirl::Syntax::Methods)
