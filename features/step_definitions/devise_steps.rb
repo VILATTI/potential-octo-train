@@ -25,7 +25,7 @@ And(/^I should see login form$/) do
 end
 
 And(/^I submit form$/) do
-  find('input[type=submit]').click
+  find('button[type=submit]').click
 end
 
 Then(/^I should see main app page$/) do
