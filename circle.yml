@@ -13,3 +13,8 @@ test:
         parallel: true
     - bundle exec cucumber:
         parallel: true
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: limitless-spire-56966
