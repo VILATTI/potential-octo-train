@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails'
 gem 'devise'
 gem 'colorize'
+gem 'enumerize'
 
 group :development, :test do
   gem 'byebug'
