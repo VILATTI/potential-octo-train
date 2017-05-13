@@ -24,6 +24,8 @@ AllCops:
     - 'db/**/*'
     - 'config/initializers/devise.rb'
     - 'lib/tasks/cucumber.rake'
+    - 'config/initializers/assets.rb'
+    - 'config/initializers/react_on_rails.rb'
   CacheRootDirectory: tmp/cache/rubocop_cache/
   TargetRubyVersion: 2.3
 Rails:

@@ -14,6 +14,10 @@ gem 'slim-rails'
 gem 'devise'
 gem 'colorize'
 gem 'enumerize'
+gem 'react_on_rails'
+gem 'lodash-rails'
+gem 'foreman'
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'byebug'
@@ -37,3 +41,5 @@ group :test do
   gem 'chromedriver-helper'
   gem 'shoulda-matchers'
 end
+
+gem 'mini_racer', platforms: :ruby

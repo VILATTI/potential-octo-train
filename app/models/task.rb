@@ -8,4 +8,6 @@ class Task < ActiveRecord::Base
   after_initialize { self.state ||= :unstarted }
 
   validates :description, presence: true
+  validates :owner_id, presence: true
+  validates :performer_id, presence: true
 end

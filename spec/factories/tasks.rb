@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :task do
-    description 'test description'
+    sequence(:description) { |n| "test task #{n}" }
 
     owner { create :user }
     performer { create :user }
