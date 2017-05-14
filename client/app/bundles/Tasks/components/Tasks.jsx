@@ -2,14 +2,11 @@ import React, { PropTypes } from 'react';
 import Task from '../components/Task';
 
 export default class Tasks extends React.Component {
-  // static propTypes = {
-  //   tasksData: PropTypes.object.isRequired,
-  // };
-
   constructor(props) {
     super(props);
     this.state = {
       sort_type: 'desc',
+      tasks: props.tasksData.tasks
     };
   }
 
@@ -24,8 +21,6 @@ export default class Tasks extends React.Component {
   sort = (field, context) => {
     return function(e) {
       e.preventDefault();
-      // console.log(field);
-      // console.log(context.state.tasks);
       context.setState((prevState, props) => ({
         sort_type: context.toggleSortType(prevState.sort_type),
         tasks: _.orderBy(props.tasksData.tasks, [field], [prevState.sort_type] )
@@ -38,16 +33,16 @@ export default class Tasks extends React.Component {
       <table className="table table-stripped tasks-list-table">
         <thead>
           <tr>
-            <th onClick={this.sort('description', this)}><span>Description</span></th>
-            <th onClick={this.sort('state', this)}><span>State</span></th>
-            <th onClick={this.sort('owner_email', this)}><span>Owner</span></th>
-            <th onClick={this.sort('performer_email', this)}><span>Performer</span></th>
-            <th onClick={this.sort('created_at', this)}><span>Created at</span></th>
+            <th onClick={this.sort('description', this)}><a className="sorted" href="#">Description</a></th>
+            <th onClick={this.sort('state', this)}><a className="sorted" href="#">State</a></th>
+            <th onClick={this.sort('owner_email', this)}><a className="sorted" href="#">Owner</a></th>
+            <th onClick={this.sort('performer_email', this)}><a className="sorted" href="#">Performer</a></th>
+            <th onClick={this.sort('created_at', this)}><a className="sorted" href="#">Created at</a></th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {this.props.tasksData.tasks.map((task) =>
+          {this.state.tasks.map((task) =>
             <Task key={task.id} task={task}/>)
           }
         </tbody>

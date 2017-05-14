@@ -1,5 +1,7 @@
 table.tasks-list-table {
-  th span {
+  th a.sorted {
+    color: black;
     cursor: pointer;
+    text-decoration: underline;
   }
 }

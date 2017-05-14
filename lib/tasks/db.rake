@@ -6,8 +6,12 @@ namespace :db do
       load Rails.application.root.join('db', 'seeds', 'user.rb')
     end
 
-    task task: :environment do
-      load Rails.application.root.join('db', 'seeds', 'task.rb')
+    task performer: :environment do
+      load Rails.application.root.join('db', 'seeds', 'performer.rb')
+    end
+
+    task tasks: :environment do
+      load Rails.application.root.join('db', 'seeds', 'tasks.rb')
     end
   end
 end
