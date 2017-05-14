@@ -10,5 +10,7 @@ nav.navbar.navbar-default
     .col-xs-12
       .panel.panel-default
         .panel-heading
-          | Header
+          | Tasks
         .panel-body
+          = redux_store('TasksStore', props: { tasksData: @tasks_data })
+          = react_component('TasksApp', props: { tasksData: @tasks_data }, prerender: false)
