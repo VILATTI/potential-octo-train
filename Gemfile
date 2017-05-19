@@ -18,6 +18,7 @@ gem 'react_on_rails'
 gem 'lodash-rails'
 gem 'foreman'
 gem 'active_model_serializers'
+gem 'bootstrap-modal-rails'
 
 group :development, :test do
   gem 'byebug'
