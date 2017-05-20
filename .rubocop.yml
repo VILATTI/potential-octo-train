@@ -42,3 +42,6 @@ Style/MultilineMethodCallIndentation:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false

@@ -10,14 +10,9 @@ class TasksController < ApplicationController
   end
 
   def update
-    # binding.pry
-    # byebug
     task = Task.find(params[:id])
-    p task_params
     task.update_attributes(task_params)
-    p '1!!!!!'
-    p task
-    p '1!!!!!'
+
     respond_to do |format|
       format.json { render json: TaskSerializer.new(task, {}).to_json }
     end

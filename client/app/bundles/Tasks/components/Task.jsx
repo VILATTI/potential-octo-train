@@ -4,7 +4,6 @@ import EditForm from '../components/EditForm';
 
 const Task = (props) => {
   var task = props.task;
-  // console.log(props);
   var onEditClick = props.onEditClick;
 
   return (

@@ -13,7 +13,7 @@ class DashboardController < ApplicationController
   end
 
   def tasks
-    ActiveModel::ArraySerializer.new(current_user.tasks, each_serializer: TaskSerializer).as_json
+    current_user.tasks.map { |task| TaskSerializer.new(task, {}).serializable_hash }
   end
 
   def states
@@ -21,6 +21,6 @@ class DashboardController < ApplicationController
   end
 
   def users
-    ActiveModel::ArraySerializer.new(User.where.not(id: current_user.id), each_serializer: UserSerializer).as_json
+    User.where.not(id: current_user.id).map { |user| UserSerializer.new(user, {}).serializable_hash }
   end
 end

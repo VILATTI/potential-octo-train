@@ -4,7 +4,7 @@ import * as actionTypes from '../constants/tasksConstants';
 export function createTask(task) {
   return (dispatch) => {
     return axios.post('/tasks.json', { task: task })
-      .then(json => dispatch(resolvedCreateTask(json.data, dispatch)))
+    //   .then(json => dispatch(resolvedCreateTask(json.data, dispatch)))
   }
 }
 
@@ -18,11 +18,11 @@ export function resolvedCreateTask(data, dispatch) {
 export function updateTask(task) {
   return (dispatch) => {
     return axios.put('/tasks/' + task.id + '.json', { task: task })
-      .then(json => dispatch(resolvedUpdateTask(json.data, dispatch)))
+    //   .then(json => dispatch(resolvedUpdateTask(json.data, dispatch)))
   }
 }
 
-export function resolvedUpdateTask(data, dispatch) {
+export function resolvedUpdateTask(data) {
   return {
     type: actionTypes.RESOLVED_UPDATE_TASK,
     data: data
@@ -41,4 +41,12 @@ export function resolvedDeleteTask(taskId) {
     type: actionTypes.RESOLVED_DELETE_TASK,
     taskId: taskId
   }
+}
+
+
+export function addTaskFromSockets(data) {
+  return {
+    type: actionTypes.ADD_TASK_FROM_SOCKETS,
+    data: data
+  };
 }

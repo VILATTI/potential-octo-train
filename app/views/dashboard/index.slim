@@ -1,5 +1,8 @@
 nav.navbar.navbar-default
   .container-fluid
+    .navbar-header
+      .navbar-brand
+        = current_user.email
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
         li

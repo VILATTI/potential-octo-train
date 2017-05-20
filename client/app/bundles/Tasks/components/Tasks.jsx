@@ -4,7 +4,6 @@ import Task from '../components/Task';
 export default class Tasks extends React.Component {
   constructor(props) {
     super(props);
-    // console.log(props);
     this.state = {
       sort_type: 'desc',
       tasks: props.tasksData.tasks,
@@ -30,6 +29,43 @@ export default class Tasks extends React.Component {
         tasks: _.orderBy(props.tasksData.tasks, [field], [prevState.sort_type] )
       }));
     }
+  };
+
+  handleTasksUpdate = (data) => {
+      let task = data.task;
+
+      switch (data.action) {
+        case 'add':
+          return this.props.actions.addTaskFromSockets(task);
+        case 'update':
+          return this.props.actions.updateTaskFromSockets(task);
+        case 'delete':
+          return this.props.actions.deleteTaskFromSockets(data.taskId);
+      }
+    };
+
+  componentDidMount() {
+    this.setupSubscription();
+  }
+
+  setupSubscription () {
+    App.tasks = App.cable.subscriptions.create(
+      { channel: 'TasksChannel' },
+      {
+        performerId: this.state.current_user_id,
+        handleTasksUpdate: this.handleTasksUpdate,
+
+        connected: function () {
+          setTimeout(() =>
+            this.perform('subscribe', { performer_id: this.performerId }),
+            1000);
+        },
+
+        received: function (data) {
+          this.handleTasksUpdate(data);
+        }
+      }
+    );
   };
 
   render() {

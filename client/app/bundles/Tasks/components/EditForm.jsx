@@ -11,8 +11,7 @@ import Modal from 'react-bootstrap/lib/Modal';
 export default class EditForm extends React.Component {
   constructor(props) {
     super(props);
-    // console.log(props);
-    // this.states = props.states;
+
     this.state = {
       id: props.task.id,
       description: props.task.description,
@@ -38,7 +37,6 @@ export default class EditForm extends React.Component {
   };
 
   submitModal = () => {
-    // console.log(this.state);
     this.props.onEditClick(this.state);
     this.closeModal();
   }
@@ -56,10 +54,6 @@ export default class EditForm extends React.Component {
   };
 
   render() {
-    // console.log(this.state.owner_id);
-    // console.log(this.props.current_user_id);
-    // console.log(this.props);
-
     return (
       <div>
         <Button

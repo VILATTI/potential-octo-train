@@ -30,6 +30,9 @@ function mapDispatchToProps(dispatch) {
       createTaskClick: (task) => { dispatch(tasksActions.createTask(task, dispatch)) },
       updateTaskClick: (task) => { dispatch(tasksActions.updateTask(task, dispatch)) },
       deleteTaskClick: (id)   => { dispatch(tasksActions.deleteTask(id, dispatch)); },
+      addTaskFromSockets: (task) => { dispatch(tasksActions.addTaskFromSockets(task))},
+      updateTaskFromSockets: (task) => { dispatch(tasksActions.resolvedUpdateTask(task, dispatch))},
+      deleteTaskFromSockets: (taskId) => { dispatch(tasksActions.resolvedDeleteTask(taskId)) }
     }
   };
 }

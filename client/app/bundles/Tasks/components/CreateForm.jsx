@@ -14,7 +14,7 @@ export default class CreateForm extends React.Component {
     this.state = {
       description: '',
       state: '',
-      performer_id: '',
+      performer_id: props.tasksData.users[0].id,
       modalIsOpen: false,
     };
   }
@@ -94,7 +94,6 @@ export default class CreateForm extends React.Component {
                 placeholder="select"
                 value={this.state.performer_id}
                 onChange={this.handlePerformerChange}>
-                <option value=""></option>)
                 {this.props.tasksData.users.map((user) =>
                   <option key={user.id} value={user.id}>{user.email}</option>)
                 }
