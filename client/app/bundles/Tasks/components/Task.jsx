@@ -3,8 +3,8 @@ import Button from 'react-bootstrap/lib/Button';
 import EditForm from '../components/EditForm';
 
 const Task = (props) => {
-  var task = props.task;
-  var onEditClick = props.onEditClick;
+  let task = props.task;
+  let onEditClick = props.onEditClick;
 
   return (
     <tr>

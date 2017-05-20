@@ -18,37 +18,23 @@ export default function tasksReducer(state = initialState, action) {
       return action.data;
 
     case actionTypes.RESOLVED_CREATE_TASK:
-      console.log(state);
-      console.log(action);
-      var newTasks = _.concat(state.tasks, action.data);
-      console.log(newTasks);
+      let newTasks = _.concat(state.tasks, action.data);
       return Object.assign({}, state, { tasks: newTasks });
 
     case actionTypes.RESOLVED_DELETE_TASK:
-      console.log(state);
-      console.log(action);
-      var tasks = state.tasks
-      var removedTasks = _.remove(tasks, { id: action.taskId });
-      console.log(tasks);
-      return Object.assign({}, state, { tasks: tasks });
+      let rdtTasks = state.tasks
+      let removedTasks = _.remove(rdtTasks, { id: action.taskId });
+      return Object.assign({}, state, { tasks: rdtTasks });
 
     case actionTypes.RESOLVED_UPDATE_TASK:
-      console.log(state);
-      console.log(action);
-      var tasks = state.tasks
-      var index = _.findIndex(tasks, { id: action.data.id });
-      console.log(index);
-      var newTasks = state.tasks.splice(index, 1, action.data);
-      console.log(newTasks);
-      console.log(tasks);
-      return Object.assign({}, state, { tasks: tasks });
+      let rutTasks = state.tasks
+      let index = _.findIndex(rutTasks, { id: action.data.id });
+      let rutNewTasks = state.tasks.splice(index, 1, action.data);
+      return Object.assign({}, state, { tasks: rutTasks });
 
     case actionTypes.ADD_TASK_FROM_SOCKETS:
-      console.log(state);
-      console.log(action);
-      var newTasks = _.concat(state.tasks, action.data);
-      console.log(newTasks);
-      return Object.assign({}, state, { tasks: newTasks });
+      let atfsNewTasks = _.concat(state.tasks, action.data);
+      return Object.assign({}, state, { tasks: atfsNewTasks });
 
     default:
       return state;

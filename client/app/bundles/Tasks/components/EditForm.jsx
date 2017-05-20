@@ -17,10 +17,10 @@ export default class EditForm extends React.Component {
       description: props.task.description,
       state: props.task.state,
       performer_id: props.task.performer_id,
+      performer_email: props.task.performer_email,
       owner_id: props.task.owner_id,
       modalIsOpen: false,
       states: props.props.states,
-      users: props.props.users
     };
   }
 
@@ -92,21 +92,14 @@ export default class EditForm extends React.Component {
               </FormControl>
             </FormGroup>
 
-            {this.state.owner_id == this.props.props.current_user_id &&
-              <FormGroup controlId="formPerformerSelect">
-                <ControlLabel>Performer</ControlLabel>
-                <FormControl
-                  componentClass="select"
-                  placeholder="select"
-                  value={this.state.performer_id}
-                  onChange={this.handlePerformerChange}>
-                  <option value=""></option>)
-                  {this.props.props.users.map((user) =>
-                    <option key={user.id} value={user.id}>{user.email}</option>)
-                  }
-                </FormControl>
-              </FormGroup>
-            }
+            <FormGroup controlId="performer">
+              <ControlLabel>Performer</ControlLabel>
+              <FormControl
+                disabled={true}
+                type="text"
+                value={this.state.performer_email}
+              />
+            </FormGroup>
           </Modal.Body>
           <Modal.Footer>
             <Button bsStyle="primary" onClick={this.submitModal}>Update</Button>
