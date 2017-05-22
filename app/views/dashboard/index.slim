@@ -1,5 +1,8 @@
 nav.navbar.navbar-default
   .container-fluid
+    .navbar-header
+      .navbar-brand
+        = current_user.email
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
         li
@@ -11,6 +14,6 @@ nav.navbar.navbar-default
       .panel.panel-default
         .panel-heading
           | Tasks
-        .panel-body
+        .panel-body#app
           = redux_store('TasksStore', props: { tasksData: @tasks_data })
           = react_component('TasksApp', props: { tasksData: @tasks_data }, prerender: false)

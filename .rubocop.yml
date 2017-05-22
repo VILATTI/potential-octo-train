@@ -26,6 +26,7 @@ AllCops:
     - 'lib/tasks/cucumber.rake'
     - 'config/initializers/assets.rb'
     - 'config/initializers/react_on_rails.rb'
+    - 'redis-3.2.0/**/*'
   CacheRootDirectory: tmp/cache/rubocop_cache/
   TargetRubyVersion: 2.3
 Rails:
@@ -41,4 +42,7 @@ Style/MultilineMethodCallIndentation:
   IndentationWidth: 2
 
 Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Bundler/OrderedGems:
   Enabled: false

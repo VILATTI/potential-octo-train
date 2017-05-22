@@ -4,4 +4,13 @@ table.tasks-list-table {
     cursor: pointer;
     text-decoration: underline;
   }
+
+  td.acions {
+    div {
+      display: inline;
+      button {
+        margin: 5px;
+      }
+    }
+  }
 }

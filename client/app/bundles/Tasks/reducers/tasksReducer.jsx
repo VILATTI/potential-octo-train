@@ -1,38 +1,54 @@
-// import { combineReducers } from 'redux';
-// // import { HELLO_WORLD_NAME_UPDATE } from '../constants/helloWorldConstants';
-//
-// const initialState = {
-//   tasks: []
-// };
-//
-// const tasksData = (state = initialState, action) => {
-//   switch (action.type) {
-//     // case HELLO_WORLD_NAME_UPDATE:
-//     //   return action.text;
-//     default:
-//       return state;
-//   }
-// };
-//
-// const tasksReducer = combineReducers({ tasksData });
-//
-// export default tasksReducer;
-
-
-
-
-
-// import * as actionTypes from '../constants/tasksConstants';
+import * as actionTypes from '../constants/tasksConstants';
 
 const initialState = {
   tasks: []
 };
 
-export default function TasksReducer(state = initialState, action) {
+export default function tasksReducer(state = initialState, action) {
   const { type, taskId } = action;
-  switch (type) {
-    // case actionTypes.DELETE_TASK:
-    //   return state;
+
+  switch (action.type) {
+    case actionTypes.CREATE_TASK:
+      return action.data;
+
+    case actionTypes.UPDATE_TASK:
+      return action.data;
+
+    case actionTypes.DELETE_TASK:
+      return action.data;
+
+    case actionTypes.RESOLVED_CREATE_TASK:
+      let rctOldTasks = state.tasks;
+      let newTasks = _.concat(rctOldTasks, action.data);
+      return Object.assign({}, state, { tasks: newTasks });
+
+    case actionTypes.RESOLVED_DELETE_TASK:
+      let rdtTasks = state.tasks
+      let removedTasks = _.remove(rdtTasks, { id: action.taskId });
+      return Object.assign({}, state, { tasks: rdtTasks });
+
+    case actionTypes.RESOLVED_UPDATE_TASK:
+      let rutTasks = state.tasks
+      let index = _.findIndex(rutTasks, { id: action.data.id });
+      let rutNewTasks = state.tasks.splice(index, 1, action.data);
+      return Object.assign({}, state, { tasks: rutTasks });
+
+    case actionTypes.ADD_TASK_FROM_SOCKETS:
+      let oldTasks = state.tasks;
+      let atfsNewTasks = _.concat(oldTasks, action.data);
+      return Object.assign({}, state, { tasks: atfsNewTasks });
+
+    case actionTypes.SORT_TASKS_LIST:
+      let unsortedTasks = state.tasks
+      let stlNewTasks = [];
+      let sortType = '';
+      if(action.data.order_type == 'asc') {
+        sortType = 'desc'
+      } else {
+        sortType = 'asc'
+      }
+      stlNewTasks = _.orderBy(unsortedTasks, [action.data.order_by], [sortType] )
+      return Object.assign({}, state, { tasks: stlNewTasks, sort_type: sortType });
 
     default:
       return state;
