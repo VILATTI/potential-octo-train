@@ -6,8 +6,6 @@ const initialState = {
 
 export default function tasksReducer(state = initialState, action) {
   const { type, taskId } = action;
-  // console.log(state);
-  // console.log(action);
 
   switch (action.type) {
     case actionTypes.CREATE_TASK:
@@ -49,15 +47,8 @@ export default function tasksReducer(state = initialState, action) {
       } else {
         sortType = 'asc'
       }
-        //   sort_type: context.toggleSortType(prevState.sort_type),
       stlNewTasks = _.orderBy(unsortedTasks, [action.data.order_by], [sortType] )
       return Object.assign({}, state, { tasks: stlNewTasks, sort_type: sortType });
-
-    // case actionTypes.RESOLVED_SORT_TASKS_LIST:
-    //   // console.log(action);
-    //   console.log('!!! RESOLVED_SORT_TASKS_LIST');
-    //   // return { tasks: action.data.tasks, sort_type: action.data.sort_type };
-    //   return Object.assign({}, state, { tasks: action.data.tasks, sort_type: action.data.sort_type });
 
     default:
       return state;

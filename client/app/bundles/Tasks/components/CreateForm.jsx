@@ -13,8 +13,6 @@ import Modal, {closeStyle} from 'simple-react-modal'
 export default class CreateForm extends React.Component {
   constructor(props) {
     super(props);
-    // console.log('CreateForm');
-    // console.log(props);
     this.state = {
       description: '',
       state: '',
@@ -110,64 +108,4 @@ export default class CreateForm extends React.Component {
       </div>
     )
   }
-
-  // render() {
-  //   return (
-  //     <div>
-  //       <Button
-  //         bsStyle="success"
-  //         bsSize="small"
-  //         onClick={this.openModal}
-  //       >
-  //         Create task
-  //       </Button>
-  //
-  //       <Modal show={this.state.modalIsOpen} onHide={this.closeModal}>
-  //         <Modal.Header closeButton>
-  //           <Modal.Title>New task</Modal.Title>
-  //         </Modal.Header>
-  //         <Modal.Body>
-  //           <FormGroup controlId="description">
-  //             <ControlLabel>Description</ControlLabel>
-  //             <FormControl
-  //               type="text"
-  //               value={this.state.description}
-  //               placeholder="Enter text"
-  //               onChange={this.handleDescriptionChange}
-  //             />
-  //           </FormGroup>
-  //
-  //           <FormGroup controlId="formStateSelect">
-  //             <ControlLabel>State</ControlLabel>
-  //             <FormControl
-  //               componentClass="select"
-  //               placeholder="select"
-  //               value={this.state.state}
-  //               onChange={this.handleStateChange}>
-  //               {this.props.tasksData.states.map((state) =>
-  //                 <option key={state} value={state}>{state}</option>)
-  //               }
-  //             </FormControl>
-  //           </FormGroup>
-  //
-  //           <FormGroup controlId="formPerformerSelect">
-  //             <ControlLabel>Performer</ControlLabel>
-  //             <FormControl
-  //               componentClass="select"
-  //               placeholder="select"
-  //               value={this.state.performer_id}
-  //               onChange={this.handlePerformerChange}>
-  //               {this.props.tasksData.users.map((user) =>
-  //                 <option key={user.id} value={user.id}>{user.email}</option>)
-  //               }
-  //             </FormControl>
-  //           </FormGroup>
-  //         </Modal.Body>
-  //         <Modal.Footer>
-  //           <Button bsStyle="primary" onClick={this.submitModal}>Create</Button>
-  //         </Modal.Footer>
-  //       </Modal>
-  //     </div>
-  //   )
-  // }
 };

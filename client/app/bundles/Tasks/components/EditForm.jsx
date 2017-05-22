@@ -100,7 +100,6 @@ export default class EditForm extends React.Component {
             <Button bsStyle="primary" onClick={this.submitModal}>Update</Button>
           </div>
         </Modal>
-
       </div>
     )
   }

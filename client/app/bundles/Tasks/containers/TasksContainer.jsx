@@ -5,12 +5,10 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-// import CreateForm from '../components/CreateForm';
 import Tasks from '../components/Tasks';
 import * as tasksActions from '../actions/tasksActions';
 
 const TasksContainer = ({ actions, tasksData }) => {
-  // <CreateForm actions={actions} states={tasksData.states} users={tasksData.users} />
   return (
     <div>
       <Tasks {...{ actions, tasksData }} />

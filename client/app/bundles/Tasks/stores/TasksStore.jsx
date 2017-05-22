@@ -1,14 +1,3 @@
-// import { createStore } from 'redux';
-// import tasksReducer from '../reducers/tasksReducer';
-//
-// const configureStore = (railsProps) => (
-//   createStore(tasksReducer, railsProps)
-// );
-//
-// export default configureStore;
-
-
-
 import { combineReducers, applyMiddleware, createStore } from 'redux';
 import middleware from 'redux-thunk';
 
