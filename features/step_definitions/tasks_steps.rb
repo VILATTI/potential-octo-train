@@ -27,3 +27,26 @@ Then(/^I should see sorted tasks list$/) do
   @task = @tasks.last
   step 'I should see task data'
 end
+
+And(/^I click create task button$/) do
+  click_button 'Create task'
+end
+
+And(/^I fill create task form$/) do
+  @task_attributes = attributes_for :task
+  fill_in 'description', with: @task_attributes[:description]
+end
+
+And(/^I submit create task form$/) do
+  click_button 'Create'
+  wait_for_ajax
+end
+
+Then(/^I should see created task$/) do
+  within '.tasks-list-table' do
+    expect(page).to have_content @task_attributes[:description]
+    expect(page).to have_content @task_attributes[:state]
+    expect(page).to have_content @user.email
+    expect(page).to have_content @performer.email
+  end
+end
