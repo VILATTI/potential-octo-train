@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/lib/Button';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
-import Modal from 'react-bootstrap/lib/Modal';
+// import Modal from 'react-bootstrap/lib/Modal';
+import Modal, {closeStyle} from 'simple-react-modal'
 
 export default class EditForm extends React.Component {
   constructor(props) {
@@ -56,19 +57,12 @@ export default class EditForm extends React.Component {
   render() {
     return (
       <div>
-        <Button
-          bsStyle="primary"
-          bsSize="xs"
-          onClick={this.openModal}
-        >
-          Edit
-        </Button>
+        <div>
+          <Button bsStyle="primary" bsSize="xs" onClick={this.openModal}>Edit</Button>
+        </div>
 
-        <Modal show={this.state.modalIsOpen} onHide={this.closeModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Edit task</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
+        <Modal show={this.state.modalIsOpen} onClose={this.closeModal}>
+          <div>
             <FormGroup controlId="description">
               <ControlLabel>Description</ControlLabel>
               <FormControl
@@ -100,11 +94,13 @@ export default class EditForm extends React.Component {
                 value={this.state.performer_email}
               />
             </FormGroup>
-          </Modal.Body>
-          <Modal.Footer>
+          </div>
+
+          <div>
             <Button bsStyle="primary" onClick={this.submitModal}>Update</Button>
-          </Modal.Footer>
+          </div>
         </Modal>
+
       </div>
     )
   }

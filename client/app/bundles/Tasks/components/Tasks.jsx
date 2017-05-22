@@ -1,11 +1,14 @@
 import React, { PropTypes } from 'react';
 import Task from '../components/Task';
+import CreateForm from '../components/CreateForm';
 
 export default class Tasks extends React.Component {
   constructor(props) {
     super(props);
+    // console.log('Tasks Component');
+    // console.log(props);
     this.state = {
-      sort_type: 'desc',
+      sort_type: props.tasksData.sort_type,
       tasks: props.tasksData.tasks,
       states: props.tasksData.states,
       users: props.tasksData.users,
@@ -13,29 +16,40 @@ export default class Tasks extends React.Component {
     };
   }
 
-  toggleSortType = (prevSortType) => {
-    if(prevSortType == 'asc') {
-      return 'desc'
-    } else {
-      return 'asc'
-    }
-  }
+  // toggleSortType = (prevSortType) => {
+  //   if(prevSortType == 'asc') {
+  //     return 'desc'
+  //   } else {
+  //     return 'asc'
+  //   }
+  // }
 
   sort = (field, context) => {
+    // console.log(this);
     return function(e) {
       e.preventDefault();
-      context.setState((prevState, props) => ({
-        sort_type: context.toggleSortType(prevState.sort_type),
-        tasks: _.orderBy(props.tasksData.tasks, [field], [prevState.sort_type] )
-      }));
+      context.props.actions.sortTasksList({ order_by: field, order_type: context.props.tasksData.sort_type })
+      // context.setState((prevState, props) => ({
+      //   sort_type: context.toggleSortType(prevState.sort_type),
+      //   tasks: _.orderBy(prevState.tasks, [field], [prevState.sort_type] )
+      // }));
     }
   };
 
+  // reloadList = (newTask) => {
+  //   let newTasks = _.concat(this.state.tasks, newTask);
+  //   this.setState({ tasks: newTasks });
+  // }
+
   handleTasksUpdate = (data) => {
       let task = data.task;
+      let context = this
 
       switch (data.action) {
         case 'add':
+          // setTimeout(() =>
+          //   this.reloadList(task),
+          //   100);
           return this.props.actions.addTaskFromSockets(task);
         case 'update':
           return this.props.actions.updateTaskFromSockets(task);
@@ -69,8 +83,11 @@ export default class Tasks extends React.Component {
   };
 
   render() {
+    // console.log(this);
     return (
       <div>
+        <CreateForm actions={this.props.actions} states={this.state.states} users={this.state.users} />
+
         <table className="table table-stripped tasks-list-table">
           <thead>
             <tr>
@@ -83,7 +100,7 @@ export default class Tasks extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.tasks.map((task) =>
+            {this.props.tasksData.tasks.map((task) =>
               <Task key={task.id} task={task} states={this.state.states} users={this.state.users}
                     current_user_id={this.state.current_user_id}
                     onEditClick={this.props.actions.updateTaskClick}

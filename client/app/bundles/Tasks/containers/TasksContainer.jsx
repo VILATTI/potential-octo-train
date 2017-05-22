@@ -5,14 +5,14 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import CreateForm from '../components/CreateForm';
+// import CreateForm from '../components/CreateForm';
 import Tasks from '../components/Tasks';
 import * as tasksActions from '../actions/tasksActions';
 
 const TasksContainer = ({ actions, tasksData }) => {
+  // <CreateForm actions={actions} states={tasksData.states} users={tasksData.users} />
   return (
     <div>
-      <CreateForm {...{ actions, tasksData }} />
       <Tasks {...{ actions, tasksData }} />
     </div>
   );
@@ -30,9 +30,10 @@ function mapDispatchToProps(dispatch) {
       createTaskClick: (task) => { dispatch(tasksActions.createTask(task, dispatch)) },
       updateTaskClick: (task) => { dispatch(tasksActions.updateTask(task, dispatch)) },
       deleteTaskClick: (id)   => { dispatch(tasksActions.deleteTask(id, dispatch)); },
-      addTaskFromSockets: (task) => { dispatch(tasksActions.addTaskFromSockets(task))},
+      addTaskFromSockets: (task) => { dispatch(tasksActions.resolvedCreateTask(task))},
       updateTaskFromSockets: (task) => { dispatch(tasksActions.resolvedUpdateTask(task, dispatch))},
-      deleteTaskFromSockets: (taskId) => { dispatch(tasksActions.resolvedDeleteTask(taskId)) }
+      deleteTaskFromSockets: (taskId) => { dispatch(tasksActions.resolvedDeleteTask(taskId)) },
+      sortTasksList: (data) => { dispatch(tasksActions.sortTasksList(data)) }
     }
   };
 }

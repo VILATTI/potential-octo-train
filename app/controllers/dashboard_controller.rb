@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
   before_action :initialize_store
 
   def index
-    @tasks_data = { tasks: tasks, states: states, users: users, current_user_id: current_user.id }
+    @tasks_data = { tasks: tasks, states: states, users: users, current_user_id: current_user.id, sort_type: 'asc' }
   end
 
   private

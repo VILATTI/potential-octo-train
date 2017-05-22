@@ -6,8 +6,10 @@ const initialState = {
 
 export default function tasksReducer(state = initialState, action) {
   const { type, taskId } = action;
+  // console.log(state);
+  // console.log(action);
 
-  switch (type) {
+  switch (action.type) {
     case actionTypes.CREATE_TASK:
       return action.data;
 
@@ -18,7 +20,8 @@ export default function tasksReducer(state = initialState, action) {
       return action.data;
 
     case actionTypes.RESOLVED_CREATE_TASK:
-      let newTasks = _.concat(state.tasks, action.data);
+      let rctOldTasks = state.tasks;
+      let newTasks = _.concat(rctOldTasks, action.data);
       return Object.assign({}, state, { tasks: newTasks });
 
     case actionTypes.RESOLVED_DELETE_TASK:
@@ -33,8 +36,28 @@ export default function tasksReducer(state = initialState, action) {
       return Object.assign({}, state, { tasks: rutTasks });
 
     case actionTypes.ADD_TASK_FROM_SOCKETS:
-      let atfsNewTasks = _.concat(state.tasks, action.data);
+      let oldTasks = state.tasks;
+      let atfsNewTasks = _.concat(oldTasks, action.data);
       return Object.assign({}, state, { tasks: atfsNewTasks });
+
+    case actionTypes.SORT_TASKS_LIST:
+      let unsortedTasks = state.tasks
+      let stlNewTasks = [];
+      let sortType = '';
+      if(action.data.order_type == 'asc') {
+        sortType = 'desc'
+      } else {
+        sortType = 'asc'
+      }
+        //   sort_type: context.toggleSortType(prevState.sort_type),
+      stlNewTasks = _.orderBy(unsortedTasks, [action.data.order_by], [sortType] )
+      return Object.assign({}, state, { tasks: stlNewTasks, sort_type: sortType });
+
+    // case actionTypes.RESOLVED_SORT_TASKS_LIST:
+    //   // console.log(action);
+    //   console.log('!!! RESOLVED_SORT_TASKS_LIST');
+    //   // return { tasks: action.data.tasks, sort_type: action.data.sort_type };
+    //   return Object.assign({}, state, { tasks: action.data.tasks, sort_type: action.data.sort_type });
 
     default:
       return state;
