@@ -48,10 +48,10 @@ Given(/^Run received websocket "(.*?)" function$/) do |arg|
   task = arg == 'delete' ? @tasks.first : Task.last
 
   data =
-      "{id:#{task.id}, description:'#{task.description}', state:'#{task.state}',
-      created_at:'#{task.created_at}',
-      owner_id:#{task.owner_id}, performer_id:#{task.performer_id},
-      owner_email:'#{task.owner.email}', performer_email:'#{task.performer.email}'}"
+    "{id:#{task.id}, description:'#{task.description}', state:'#{task.state}',
+    created_at:'#{task.created_at}',
+    owner_id:#{task.owner_id}, performer_id:#{task.performer_id},
+    owner_email:'#{task.owner.email}', performer_email:'#{task.performer.email}'}"
 
   script = "App.tasks.received({task: #{data}, action: '#{arg}', taskId: #{task.id}})"
   page.execute_script(script)

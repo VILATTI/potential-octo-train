@@ -22,6 +22,7 @@ AllCops:
     - 'bin/**/*'
     - 'spec/spec_helper.rb'
     - 'db/**/*'
+    - 'features/support/*'
     - 'config/initializers/devise.rb'
     - 'lib/tasks/cucumber.rake'
     - 'config/initializers/assets.rb'
