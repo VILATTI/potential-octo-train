@@ -2,9 +2,18 @@ Given(/^User$/) do
   @user = create :user
 end
 
+Given(/^Performer$/) do
+  @performer = create :user
+end
+
 Given(/^Logged in user$/) do
   step 'User'
   login_as @user
+end
+
+Given(/^Logged in performer$/) do
+  step 'User'
+  login_as @performer
 end
 
 Given(/^Visit root page$/) do
