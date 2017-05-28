@@ -1,6 +1,6 @@
-require "capybara/rails"
+require 'capybara/rails'
 require 'capybara/rspec'
-# require "capybara/webkit"
+require 'capybara/webkit'
 require 'capybara/poltergeist'
 require 'headless'
 
@@ -18,15 +18,15 @@ end
 
 Capybara.server = :thin
 
-# Capybara::Webkit.configure do |config|
-#   config.block_unknown_urls
-#   config.skip_image_loading
-# end
+Capybara::Webkit.configure do |config|
+  config.block_unknown_urls
+  config.skip_image_loading
+end
 
 Capybara.register_driver :poltergeist do |app|
   options = {
     debug: false,
-    timeout: 30,
+    timeout: 10,
     window_size: [1920, 1080],
     js_errors: false,
     phantomjs_options: [
@@ -50,7 +50,7 @@ RSpec.configure do |config|
 
   config.before(:each) do |example|
     if example.metadata[:js]
-      # Capybara.server_port = ENV['PORT'].try(:to_i) || 3000
+      Capybara.server_port = ENV['PORT'].try(:to_i) || 8000
       set_capybara_locale(example.metadata[:locale] || I18n.default_locale)
 
       # Test are runned much faster with driver switching
@@ -66,8 +66,8 @@ RSpec.configure do |config|
           headless = Headless.new
           headless.start
         end
-        # Capybara.current_driver = :webkit
-        # Capybara.javascript_driver = :webkit
+        Capybara.current_driver = :webkit
+        Capybara.javascript_driver = :webkit
         handle = Capybara.current_session.driver.current_window_handle
         Capybara.current_session.driver.resize_window_to(handle, 1920, 1080) if handle
       end

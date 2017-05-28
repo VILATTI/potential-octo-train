@@ -11,6 +11,11 @@ Given(/^Logged in user$/) do
   login_as @user
 end
 
+Given(/^Logged in performer$/) do
+  step 'User'
+  login_as @performer
+end
+
 Given(/^Visit root page$/) do
   visit root_path
 end

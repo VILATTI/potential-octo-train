@@ -40,6 +40,7 @@ group :test do
   gem 'rspec-rails'
   gem 'cucumber-rails', require: false
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'poltergeist'
   gem 'chromedriver-helper'

@@ -1,24 +1,18 @@
 require 'factory_girl'
 require 'cucumber/rails'
 require 'webmock/cucumber' if Rails.env.test?
-require 'capybara/poltergeist'
 require 'cucumber/rspec/doubles'
 
 include Warden::Test::Helpers
+
+require 'sidekiq/testing/inline'
+Sidekiq::Testing.fake!
 
 Before do
   WebMock.disable_net_connect!(allow_localhost: true) if Rails.env.test?
 end
 
 Capybara.server_port = '8000'
-Capybara.app_host = 'http://localhost:8000'
-if Rails.env.test?
-  Capybara.register_driver :selenium do |app|
-    Capybara::Selenium::Driver.new(app, browser: :chrome)
-  end
-end
-
-Capybara.javascript_driver = :poltergeist
 
 Before('@javascript') do
   unless Capybara.current_driver == :selenium

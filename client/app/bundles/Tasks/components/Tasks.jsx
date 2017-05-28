@@ -24,8 +24,6 @@ export default class Tasks extends React.Component {
   handleTasksUpdate = (data) => {
       let task = data.task;
       let context = this
-      console.log('handleTasksUpdate');
-      console.log(data);
 
       switch (data.action) {
         case 'add':
@@ -42,7 +40,6 @@ export default class Tasks extends React.Component {
   }
 
   setupSubscription () {
-    console.log('setupSubscription!!');
     App.tasks = App.cable.subscriptions.create(
       { channel: 'TasksChannel' },
       {
@@ -50,7 +47,6 @@ export default class Tasks extends React.Component {
         handleTasksUpdate: this.handleTasksUpdate,
 
         connected: function () {
-          console.log('connected???');
           setTimeout(() =>
             this.perform('subscribe', { performer_id: this.performerId }),
             1000);
